@@ -1,6 +1,6 @@
-# cordaline
+# kordaline
 
-[Open the app](https://stanfordnqp.github.io/cordaline/)
+[Open the app](https://stanfordnqp.github.io/kordaline/)
 
 A small, browser-only tool for transferring coordinates between two frames.
 It fits translation only: no rotation, scaling, or axis inversion.
