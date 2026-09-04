@@ -442,6 +442,17 @@ function setupApp() {
     } else if (event.target.matches(".target-input")) updateTargets();
   });
   $("add-point").addEventListener("click", addRow);
+  $("clear-rows").addEventListener("click", () => {
+    window.clearTimeout(timer);
+    rows.replaceChildren();
+    addRow();
+    clearResult("Enter at least one complete alignment point pair.");
+    $("error-message").textContent = "";
+    $("paste-status").textContent = "";
+    $("target-copy-status").textContent = "";
+    updateTargets();
+    rows.querySelector(".coordinate").focus();
+  });
   $("add-target").addEventListener("click", addTarget);
   $("displacement-mode").addEventListener("change", updatePlots);
   $("copy-rows").addEventListener("click", async () => {

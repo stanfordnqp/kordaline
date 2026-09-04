@@ -18,7 +18,12 @@ No installation, account, server computation, or data upload is required.
    Their Frame 2 coordinates appear to the right. **Copy Frame 2** copies
    those outputs as spreadsheet-ready text.
 
-Everything recalculates on input. The first plot shows alignment points and
+Everything recalculates on input.
+**Clear all rows** empties the alignment table and resets the fit, leaving one
+blank row ready for input. Target inputs are preserved, but their outputs clear
+until a new alignment is entered.
+
+The first plot shows alignment points and
 targets labeled P1, P2, etc. The second shows row-labeled residuals in µm,
 or raw displacement in mm. Both plots use equal scales and rounded ticks.
 

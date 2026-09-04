@@ -28,6 +28,24 @@ async function app(t) {
   return { dom, document, $, inputs, rows, paste };
 }
 
+test("clear all rows resets alignment and outputs while preserving target inputs", async (t) => {
+  const a = await app(t);
+  a.paste("0\t0\t10\t20\n1\t1\t11\t21");
+  const target = a.document.querySelector(".target-input");
+  target.value = "3";
+  assert.equal(a.$("add-point").nextElementSibling, a.$("clear-rows"));
+  a.$("clear-rows").click();
+  assert.equal(a.rows().length, 1);
+  assert.ok(a.inputs().every((input) => input.value === ""));
+  assert.equal(a.$("translation-x").textContent, "—");
+  assert.equal(a.$("copy-targets").disabled, true);
+  assert.equal(a.$("frame-plot").querySelectorAll("circle").length, 0);
+  assert.equal(target.value, "3");
+  assert.equal(a.document.activeElement, a.inputs()[0]);
+  a.paste("0\t0\t5\t6");
+  assert.equal(a.$("translation-x").textContent, "5");
+});
+
 test("spreadsheet paste expands rows and updates result and both labeled plots", async (t) => {
   const a = await app(t);
   a.paste(Array.from({ length: 6 }, (_, i) => `${i}\t${i}\t${i + 10}\t${i + 20}`).join("\r\n") + "\r\n");
