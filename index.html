@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>coordalign · Coordinate alignment</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main>
+  <header>
+    <h1>Coordinate alignment</h1>
+    <p>Frame 1 to Frame 2. Translation only; coordinates in mm.</p>
+  </header>
+
+  <form id="alignment-form" novalidate>
+    <section class="measurements" aria-labelledby="measurements-title">
+      <h2 id="measurements-title">Alignment points</h2>
+      <div class="table-wrap">
+        <table id="points-table" class="coordinate-table">
+          <thead>
+            <tr><th rowspan="2">Use</th><th rowspan="2">Row</th><th colspan="2">Frame 1</th><th colspan="2">Frame 2</th><th rowspan="2"><span class="sr-only">Remove</span></th></tr>
+            <tr><th>X</th><th>Y</th><th>X</th><th>Y</th></tr>
+          </thead>
+          <tbody id="point-rows"></tbody>
+        </table>
+      </div>
+      <div class="actions">
+        <button type="button" id="add-point">Add row</button>
+        <button type="button" id="copy-rows">Copy rows</button>
+      </div>
+      <p id="paste-status" class="hint" role="status"></p>
+      <p id="error-message" role="alert"></p>
+
+      <section class="target-section" aria-labelledby="targets-title">
+        <h2 id="targets-title">Points to transform</h2>
+        <div class="table-wrap">
+          <table id="target-table" class="coordinate-table">
+            <thead>
+              <tr><th rowspan="2">Point</th><th colspan="2">Frame 1</th><th colspan="2">Frame 2</th><th rowspan="2"><span class="sr-only">Remove</span></th></tr>
+              <tr><th>X</th><th>Y</th><th>X</th><th>Y</th></tr>
+            </thead>
+            <tbody id="target-rows"></tbody>
+          </table>
+        </div>
+        <div class="actions">
+          <button type="button" id="add-target">Add point</button>
+          <button type="button" id="copy-targets" disabled>Copy Frame 2</button>
+        </div>
+        <p id="target-copy-status" class="hint" role="status"></p>
+        <p id="target-error" role="alert"></p>
+      </section>
+    </section>
+
+    <section class="results" aria-labelledby="results-title" aria-live="polite">
+      <h2 id="results-title">Alignment statistics</h2>
+      <p id="result-status" class="hint">Enter at least one complete point pair.</p>
+      <table class="statistics" aria-label="Fit statistics">
+        <tbody>
+          <tr><th scope="row">Mean translation X</th><td id="translation-x">—</td><td>mm</td></tr>
+          <tr><th scope="row">Mean translation Y</th><td id="translation-y">—</td><td>mm</td></tr>
+          <tr><th scope="row">RMS residual</th><td id="rms-residual">—</td><td>mm</td></tr>
+          <tr><th scope="row">Maximum residual</th><td id="max-residual">—</td><td>mm</td></tr>
+          <tr class="section-start"><th scope="row">Standard error of mean X</th><td id="mean-se-x">—</td><td>mm</td></tr>
+          <tr><th scope="row">Standard error of mean Y</th><td id="mean-se-y">—</td><td>mm</td></tr>
+          <tr><th scope="row">2D RMS uncertainty of mean</th><td id="mean-rms-uncertainty">—</td><td>mm</td></tr>
+        </tbody>
+      </table>
+      <p id="uncertainty-status" class="hint">Uncertainty requires at least two independent point pairs.</p>
+    </section>
+  </form>
+
+  <section class="plots" aria-label="Point plots">
+    <figure>
+      <h2>Frame 1</h2>
+      <svg id="frame-plot" viewBox="0 0 520 440" role="img" aria-label="Frame 1 alignment points and points to transform"></svg>
+      <figcaption><span class="filled-key">●</span> Used <span class="hollow-key">○</span> Excluded <span>＋</span> Points to transform (P1, P2, …).</figcaption>
+    </figure>
+    <figure>
+      <div class="plot-heading">
+        <h2 id="displacement-title">Residual displacement</h2>
+        <label><span class="sr-only">Displacement view</span><select id="displacement-mode"><option value="residual">Subtract mean translation</option><option value="raw">Raw displacement</option></select></label>
+      </div>
+      <svg id="displacement-plot" viewBox="0 0 520 440" role="img" aria-label="Row-labeled displacement vectors from the origin"></svg>
+      <figcaption id="displacement-note">Frame 2 − Frame 1 − fitted translation, in µm. Every reference point is at the origin.</figcaption>
+    </figure>
+  </section>
+  <footer>The fit uses checked, complete rows only. More independent measurements reduce uncertainty approximately as 1/√n for unchanged scatter. Systematic errors do not average away.</footer>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
