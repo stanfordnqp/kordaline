@@ -4,7 +4,7 @@ Use a dedicated Git worktree before editing. Validate and commit there;
 leave the worktree clean when done. Keep the default checkout coordination-only.
 
 This repository owns the hosted coordinate-alignment app:
-https://stanfordnqp.github.io/coordalign/
+https://stanfordnqp.github.io/cordaline/
 
 - index.html: plain two-column UI.
 - app.js: numerical model, spreadsheet interactions, SVG plots.
