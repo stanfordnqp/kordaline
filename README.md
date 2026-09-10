@@ -61,7 +61,7 @@ Copied outputs match displayed values. Calculations retain full precision.
 ## Development and deployment
 
 Open `index.html` directly to use the app offline. Only `index.html`,
-`app.js`, and `styles.css` are needed at runtime.
+`app.js`, `styles.css`, and `penrose.svg` are needed at runtime.
 
 ```sh
 npm ci
@@ -73,7 +73,7 @@ Tests cover the numerical model, spreadsheet input, exclusion, precision,
 multiple targets, plot ticks, and clipboard interactions with jsdom.
 
 GitHub Pages is configured with **GitHub Actions** as its build source.
-Pushes to `main` run tests and publish only the three runtime files.
+Pushes to `main` run tests and publish only the four runtime files.
 Pull requests run tests without deploying. The workflow can also be run manually.
 
 This standalone app was extracted from `tools/ebl_alignment` in gds-studio

@@ -30,7 +30,7 @@ jobs:
       - name: Package static app
         run: |
           mkdir -p dist
-          cp index.html app.js styles.css dist/
+          cp index.html app.js styles.css penrose.svg dist/
       - uses: actions/upload-pages-artifact@v3
         if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         with:

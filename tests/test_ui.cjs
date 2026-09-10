@@ -46,6 +46,13 @@ test("clear all rows resets alignment and outputs while preserving target inputs
   assert.equal(a.$("translation-x").textContent, "5");
 });
 
+test("Penrose mark is used in the header and as the browser icon", async (t) => {
+  const a = await app(t);
+  assert.equal(a.document.querySelector('link[rel="icon"]').getAttribute("href"), "penrose.svg");
+  assert.equal(a.document.querySelector("header .site-mark").getAttribute("src"), "penrose.svg");
+  assert.equal(a.document.querySelector("header .site-mark").getAttribute("alt"), "");
+});
+
 test("spreadsheet paste expands rows and updates result and both labeled plots", async (t) => {
   const a = await app(t);
   a.paste(Array.from({ length: 6 }, (_, i) => `${i}\t${i}\t${i + 10}\t${i + 20}`).join("\r\n") + "\r\n");
