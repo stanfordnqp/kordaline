@@ -8,6 +8,7 @@ const { JSDOM } = require("jsdom");
 const root = path.resolve(__dirname, "..");
 const html = fs.readFileSync(path.join(root, "index.html"), "utf8");
 const script = fs.readFileSync(path.join(root, "app.js"), "utf8");
+const penrose = fs.readFileSync(path.join(root, "penrose.svg"), "utf8");
 
 async function app(t) {
   const dom = new JSDOM(html, { runScripts: "outside-only" });
@@ -51,6 +52,11 @@ test("Penrose mark is used in the header and as the browser icon", async (t) => 
   assert.equal(a.document.querySelector('link[rel="icon"]').getAttribute("href"), "penrose.svg");
   assert.equal(a.document.querySelector("header .site-mark").getAttribute("src"), "penrose.svg");
   assert.equal(a.document.querySelector("header .site-mark").getAttribute("alt"), "");
+  assert.match(penrose, /Kruskal–Szekeres/);
+  assert.match(penrose, /r=0 curvature singularities/);
+  assert.match(penrose, /confined to the two asymptotically flat exterior regions/);
+  assert.doesNotMatch(penrose, /Q120 (?:22|44|96|118) 232/);
+  assert.doesNotMatch(penrose, /<rect|fill="#[0-9a-f]/i);
 });
 
 test("spreadsheet paste expands rows and updates result and both labeled plots", async (t) => {

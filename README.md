@@ -6,6 +6,11 @@ A small, browser-only tool for transferring coordinates between two frames.
 It fits translation only: no rotation, scaling, or axis inversion.
 No installation, account, server computation, or data upload is required.
 
+The mark is a transparent, dark-blue causal diagram of the maximally extended
+Schwarzschild solution: two asymptotically flat exteriors, four null event-horizon
+branches, and spacelike future and past `r = 0` singularities. Its lighter
+conformal grids stay within the two exterior diamonds; they are not worldlines.
+
 ## Use
 
 1. Enter corresponding measurements in **Alignment points**, in mm.
